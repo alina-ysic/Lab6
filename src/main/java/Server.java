@@ -38,6 +38,7 @@ public class Server extends AllDirectives {
         this.http = http;
         this.materializer = materializer;
         this.storageActor = storageActor;
+        flow = createRoute().flow(system, materializer);
         this.zookeeper = new ZooKeeper(ZOOKEEPER_SERVER, TIMEOUT_INT, null);
         zookeeper.create(
                 SERVERS_PATH + "/" + "localhost" + ":" + port,
@@ -46,7 +47,6 @@ public class Server extends AllDirectives {
                 CreateMode.EPHEMERAL_SEQUENTIAL
         );
         watchServers();
-        flow = createRoute().flow(system, materializer);
     }
 
     public Flow<HttpRequest, HttpResponse, NotUsed> getFlow() {
