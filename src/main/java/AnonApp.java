@@ -17,6 +17,7 @@ import java.util.concurrent.CompletionStage;
 public class AnonApp {
     public static void main(String[] args) throws IOException, InterruptedException, KeeperException {
         int port = Integer.parseInt(args[0]);
+        System.out.println(port);
         ActorSystem system = ActorSystem.create("Lab6");
         ActorRef storageActor = system.actorOf(Props.create(ConfStorageActor.class));
         final Http http = Http.get(system);
