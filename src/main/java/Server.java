@@ -9,7 +9,7 @@ import akka.stream.javadsl.Flow;
 public class Server extends AllDirectives {
     private final Http http;
     private final Materializer materializer;
-    private final Flow<HttpRequest, HttpResponse, NotUsed> routes;
+    //private final Flow<HttpRequest, HttpResponse, NotUsed> routes;
 
     public Server(Http http, Materializer materializer) {
         this.http = http;
