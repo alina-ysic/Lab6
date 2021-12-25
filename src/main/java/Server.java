@@ -82,6 +82,7 @@ public class Server extends AllDirectives {
             }
         });
         for (String serverName : serverNames) {
+            byte[] url = zookeeper.getData(SERVERS_PATH + "/" + serverName, null, null);
             
         }
     }
