@@ -78,14 +78,11 @@ public class Server extends AllDirectives {
         final List<String> servers = new ArrayList<>();
         final List<String> serverNames = zookeeper.getChildren(SERVERS_PATH, event -> {
             if (event.getType() == Watcher.Event.EventType.NodeChildrenChanged) {
-                try {
-                    watchServers();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                } catch (KeeperException e) {
-                    e.printStackTrace();
-                }
+                watchServers();
             }
         });
+        for (String serverName : serverNames) {
+            
+        }
     }
 }
