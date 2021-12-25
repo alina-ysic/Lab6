@@ -16,6 +16,7 @@ public class Server extends AllDirectives {
     private Flow<HttpRequest, HttpResponse, NotUsed> flow;
 
     private static final String URL_PARAM = "url";
+    private static final String COUNT_PARAM = "count";
     //private final Flow<HttpRequest, HttpResponse, NotUsed> routes;
 
     public Server(ActorSystem system, Http http, Materializer materializer, ActorRef storageActor, int port) {
@@ -32,6 +33,10 @@ public class Server extends AllDirectives {
 
     public Route createRoute() {
         return get(() ->
-                parameter())
+                parameter(URL_PARAM, url ->
+                    parameter(COUNT_PARAM, countValue -> {
+                        int count = Integer.parseInt(countValue);
+                        if (count == 0)
+        })
     }
 }
