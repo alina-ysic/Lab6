@@ -85,5 +85,6 @@ public class Server extends AllDirectives {
             byte[] url = zookeeper.getData(SERVERS_PATH + "/" + serverName, null, null);
             servers.add(new String(url));
         }
+        storageActor.tell(new ServersChangeMessage()
     }
 }
