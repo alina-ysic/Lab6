@@ -11,7 +11,7 @@ public class Server extends AllDirectives {
     private final Materializer materializer;
     private final Flow<HttpRequest, HttpResponse, NotUsed> routes;
 
-    public Server(Http http, Materializer materializer, Flow<HttpRequest, HttpResponse) {
+    public Server(Http http, Materializer materializer) {
         this.http = http;
         this.materializer = materializer;
         //this.routes = routes;
