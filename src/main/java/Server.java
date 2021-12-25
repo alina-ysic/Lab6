@@ -40,6 +40,7 @@ public class Server extends AllDirectives {
         this.materializer = materializer;
         this.storageActor = storageActor;
         this.zookeeper = new ZooKeeper(ZOOKEEPER_SERVER, TIMEOUT_INT, null);
+
         zookeeper.create(
                 NODE_PATH,
                 ("http://localhost" + port).getBytes(),
@@ -70,5 +71,9 @@ public class Server extends AllDirectives {
                                     });
                         }
         })
+    }
+
+    public void watchServers() {
+
     }
 }
