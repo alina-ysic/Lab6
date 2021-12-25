@@ -19,6 +19,8 @@ import org.apache.zookeeper.ZooKeeper;
 
 import java.io.IOException;
 import java.time.Duration;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Server extends AllDirectives {
     private final Http http;
@@ -76,6 +78,7 @@ public class Server extends AllDirectives {
     }
 
     public void watchServers() {
-        
+        final List<String> servers = new ArrayList<>();
+
     }
 }
