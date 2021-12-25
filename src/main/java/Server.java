@@ -39,13 +39,13 @@ public class Server extends AllDirectives {
         this.materializer = materializer;
         this.storageActor = storageActor;
         this.zookeeper = new ZooKeeper(ZOOKEEPER_SERVER, TIMEOUT_INT, null);
-        watchServers();
         zookeeper.create(
                 NODE_PATH,
                 ("http://localhost" + port).getBytes(),
                 ZooDefs.Ids.OPEN_ACL_UNSAFE,
                 CreateMode.EPHEMERAL_SEQUENTIAL
         );
+        watchServers();
         flow = createRoute().flow(system, materializer);
     }
 
