@@ -36,7 +36,10 @@ public class Server extends AllDirectives {
                 parameter(URL_PARAM, url ->
                     parameter(COUNT_PARAM, countValue -> {
                         int count = Integer.parseInt(countValue);
-                        if (count == 0) 
+                        if (count == 0) http.singleRequest(HttpRequest.create(url);
+                        else {
+                            
+                        }
         })
     }
 }
