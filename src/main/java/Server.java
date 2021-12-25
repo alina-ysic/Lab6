@@ -13,6 +13,7 @@ import akka.pattern.Patterns;
 import akka.stream.Materializer;
 import akka.stream.javadsl.Flow;
 import org.apache.zookeeper.CreateMode;
+import org.apache.zookeeper.KeeperException;
 import org.apache.zookeeper.ZooDefs;
 import org.apache.zookeeper.ZooKeeper;
 
@@ -34,14 +35,14 @@ public class Server extends AllDirectives {
     private static final String ZOOKEEPER_SERVER = "127.0.0.1:2181";
     private final ZooKeeper zookeeper;
 
-    public Server(ActorSystem system, Http http, Materializer materializer, ActorRef storageActor, int port) throws IOException {
+    public Server(ActorSystem system, Http http, Materializer materializer, ActorRef storageActor, int port) throws IOException, InterruptedException, KeeperException {
         this.http = http;
         this.materializer = materializer;
         this.storageActor = storageActor;
         this.zookeeper = new ZooKeeper(ZOOKEEPER_SERVER, TIMEOUT_INT, null);
         zookeeper.create(
                 NODE_PATH,
-                .getBytes(),
+                ("http://localhost" + port).getBytes(),
                 ZooDefs.Ids.OPEN_ACL_UNSAFE,
                 CreateMode.EPHEMERAL_SEQUENTIAL
         );
