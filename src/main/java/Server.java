@@ -25,6 +25,7 @@ public class Server extends AllDirectives {
     private static final String URL_PARAM = "url";
     private static final String COUNT_PARAM = "count";
 
+    private static final String ZOOKEEPER_SERVER = "127.0.0.1:2181";
     private static final ZooKeeper;
 
     public Server(ActorSystem system, Http http, Materializer materializer, ActorRef storageActor, int port) {
