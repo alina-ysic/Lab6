@@ -15,7 +15,7 @@ public class ConfStorageActor extends AbstractActor {
     public Receive createReceive() {
         return ReceiveBuilder.create()
                 .match(RandomRequest.class, m -> sender().tell(getServer(), self()))
-                .match(ServersChangeMessage.class, msg -> msg.getServers() )
+                .match(ServersChangeMessage.class, msg -> this.servers = msg.getServers())
                 .build();
     }
 }
