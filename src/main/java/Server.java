@@ -75,22 +75,18 @@ public class Server extends AllDirectives {
     }
 
     public void watchServers() throws InterruptedException, KeeperException {
-        final List<String> servers = new ArrayList<>();
-        final List<String> serverNames = zookeeper.getChildren(SERVERS_PATH, event -> {
-            if (event.getType() == Watcher.Event.EventType.NodeChildrenChanged) {
-                try {
+        try {
+            final List<String> servers = new ArrayList<>();
+            final List<String> serverNames = zookeeper.getChildren(SERVERS_PATH, event -> {
+                if (event.getType() == Watcher.Event.EventType.NodeChildrenChanged) {
                     watchServers();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                } catch (KeeperException e) {
-                    e.printStackTrace();
                 }
+            });
+            for (String serverName : serverNames) {
+                byte[] url = zookeeper.getData(SERVERS_PATH + "/" + serverName, null, null);
+                servers.add(new String(url));
             }
-        });
-        for (String serverName : serverNames) {
-            byte[] url = zookeeper.getData(SERVERS_PATH + "/" + serverName, null, null);
-            servers.add(new String(url));
-        }
-        storageActor.tell(new ServersChangeMessage(servers.toArray(new String[0])), ActorRef.noSender());
+            storageActor.tell(new ServersChangeMessage(servers.toArray(new String[0])), ActorRef.noSender());
+        } catch ()
     }
 }
