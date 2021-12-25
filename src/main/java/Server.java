@@ -50,10 +50,8 @@ public class Server extends AllDirectives {
                                                 .query(Query.create(
                                                         Pair.create(URL_PARAM, url),
                                                         Pair.create(COUNT_PARAM, Integer.toString(count - 1)))));
-
-                                                
-
-                                    })
+                                        http.singleRequest(HttpRequest.create(link));
+                                    });
                         }
         })
     }
