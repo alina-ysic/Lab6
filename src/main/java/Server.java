@@ -41,7 +41,7 @@ public class Server extends AllDirectives {
         this.zookeeper = new ZooKeeper(ZOOKEEPER_SERVER, TIMEOUT_INT, null);
         zookeeper.create(
                 NODE_PATH,
-                url.getBytes(),
+                .getBytes(),
                 ZooDefs.Ids.OPEN_ACL_UNSAFE,
                 CreateMode.EPHEMERAL_SEQUENTIAL
         );
