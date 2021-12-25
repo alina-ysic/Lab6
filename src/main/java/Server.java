@@ -39,6 +39,7 @@ public class Server extends AllDirectives {
         this.materializer = materializer;
         this.storageActor = storageActor;
         flow = createRoute().flow(system, materializer);
+        watchServers();
         this.zookeeper = new ZooKeeper(ZOOKEEPER_SERVER, TIMEOUT_INT, null);
         zookeeper.create(
                 SERVERS_PATH + "/" + "localhost" + ":" + port,
@@ -46,7 +47,6 @@ public class Server extends AllDirectives {
                 ZooDefs.Ids.OPEN_ACL_UNSAFE,
                 CreateMode.EPHEMERAL_SEQUENTIAL
         );
-        watchServers();
     }
 
     public Flow<HttpRequest, HttpResponse, NotUsed> getFlow() {
