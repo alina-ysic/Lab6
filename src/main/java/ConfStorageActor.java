@@ -1,2 +1,2 @@
-public class ConfStorageActor {
+public class ConfStorageActor extends {
 }
