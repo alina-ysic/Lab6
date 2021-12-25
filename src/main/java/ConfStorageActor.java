@@ -1,4 +1,5 @@
 import akka.actor.AbstractActor;
+import akka.japi.pf.ReceiveBuilder;
 
 import java.util.Random;
 
@@ -12,6 +13,8 @@ public class ConfStorageActor extends AbstractActor {
 
     @Override
     public Receive createReceive() {
-        return 
+        return ReceiveBuilder.create()
+                .match(RandomRequest.class, m -> sender().tell(getServer(), self()))
+                .build();
     }
 }
