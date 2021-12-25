@@ -30,11 +30,8 @@ public class AnonApp {
         );
 
         System.out.println("Server started: " + "localhost" + ":" + port);
-        System.in.read();
         binding
                 .thenCompose(ServerBinding::unbind)
                 .thenAccept(unbind -> system.terminate());
     }
-
-    public
 }
