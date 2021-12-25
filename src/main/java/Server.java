@@ -39,8 +39,8 @@ public class Server extends AllDirectives {
         this.materializer = materializer;
         this.storageActor = storageActor;
         flow = createRoute().flow(system, materializer);
-        watchServers();
         this.zookeeper = new ZooKeeper(ZOOKEEPER_SERVER, TIMEOUT_INT, null);
+        watchServers();
         zookeeper.create(
                 SERVERS_PATH + "/" + "localhost" + ":" + port,
                 ("http://localhost:" + port).getBytes(),
