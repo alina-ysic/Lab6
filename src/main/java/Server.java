@@ -61,7 +61,7 @@ public class Server extends AllDirectives {
                         if (count == 0) return completeWithFuture(http.singleRequest(HttpRequest.create(url)));
                         return completeWithFuture(Patterns.ask(storageActor, new RandomRequest(), TIMEOUT)
                                 .thenCompose(newUrl -> {
-                                    String link = String.valueOf(Uri.create(url)
+                                    String link = String.valueOf(Uri.create((String) newUrl)
                                             .query(Query.create(
                                                     Pair.create(URL_PARAM, url),
                                                     Pair.create(COUNT_PARAM, Integer.toString(count - 1)))));
