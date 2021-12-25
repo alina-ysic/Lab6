@@ -20,7 +20,7 @@ public class AnonApp {
         final Http http = Http.get(system);
         final ActorMaterializer materializer = ActorMaterializer.create(system);
 
-        
+        ZookeeperServices zookeeperServices = new ZookeeperServices(storageActor);
 
 
         final Flow<HttpRequest, HttpResponse, NotUsed> flow = null;
