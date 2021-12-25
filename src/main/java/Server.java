@@ -60,7 +60,7 @@ public class Server extends AllDirectives {
                     parameter(COUNT_PARAM, countValue -> {
                         int count = Integer.parseInt(countValue);
                         if (count == 0) return http.singleRequest(HttpRequest.create(url));
-                        Patterns.ask(storageActor, new RandomRequest(), TIMEOUT)
+                        return Patterns.ask(storageActor, new RandomRequest(), TIMEOUT)
                                 .thenCompose(newUrl -> {
                                     String link = String.valueOf(Uri.create(url)
                                             .query(Query.create(
@@ -71,7 +71,7 @@ public class Server extends AllDirectives {
 
                     })
                 )
-        )
+        );
 
     }
 
