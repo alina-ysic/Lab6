@@ -30,7 +30,7 @@ public class AnonApp {
                 ConnectHttp.toHost("localhost", port),
                 materializer
         );
-        System.in.read()
+        System.in.read();
         System.out.println("Server started: " + "localhost" + ":" + port);
         binding
                 .thenCompose(ServerBinding::unbind)
