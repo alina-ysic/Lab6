@@ -45,7 +45,7 @@ public class Server extends AllDirectives {
                 ZooDefs.Ids.OPEN_ACL_UNSAFE,
                 CreateMode.EPHEMERAL_SEQUENTIAL
         );
-        //watchServers();
+        watchServers();
         flow = createRoute().flow(system, materializer);
     }
 
