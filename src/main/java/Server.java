@@ -14,6 +14,8 @@ public class Server extends AllDirectives {
     private final Materializer materializer;
     private ActorRef storageActor;
     private Flow<HttpRequest, HttpResponse, NotUsed> flow;
+
+    private static final String URL_PARAM = "url";
     //private final Flow<HttpRequest, HttpResponse, NotUsed> routes;
 
     public Server(ActorSystem system, Http http, Materializer materializer, ActorRef storageActor, int port) {
