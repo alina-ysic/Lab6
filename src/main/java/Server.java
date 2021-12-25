@@ -12,6 +12,7 @@ import akka.japi.Pair;
 import akka.pattern.Patterns;
 import akka.stream.Materializer;
 import akka.stream.javadsl.Flow;
+import org.apache.zookeeper.ZooKeeper;
 
 import java.time.Duration;
 
@@ -24,7 +25,7 @@ public class Server extends AllDirectives {
     private static final String URL_PARAM = "url";
     private static final String COUNT_PARAM = "count";
 
-    private static final 
+    private static final ZooKeeper;
 
     public Server(ActorSystem system, Http http, Materializer materializer, ActorRef storageActor, int port) {
         this.http = http;
