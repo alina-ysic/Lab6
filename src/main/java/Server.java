@@ -42,7 +42,9 @@ public class Server extends AllDirectives {
                         if (count == 0) http.singleRequest(HttpRequest.create(url));
                         else {
                             Patterns.ask(storageActor, new RandomRequest(), TIMEOUT)
-                                    .thenCompose(newUrl -> )
+                                    .thenCompose(newUrl -> {
+                                        
+                                    })
                         }
         })
     }
