@@ -41,7 +41,7 @@ public class Server extends AllDirectives {
         flow = createRoute().flow(system, materializer);
         this.zookeeper = new ZooKeeper(ZOOKEEPER_SERVER, TIMEOUT_INT, null);
         zookeeper.create(
-                SERVERS_PATH + "/" + "localhost" + ":" + port,
+                (SERVERS_PATH + "/" + "localhost" + ":" + port).getBytes(),
                 ("http://localhost:" + port).getBytes(),
                 ZooDefs.Ids.OPEN_ACL_UNSAFE,
                 CreateMode.EPHEMERAL_SEQUENTIAL
