@@ -8,7 +8,9 @@ public class ConfStorageActor extends AbstractActor {
     private String[] servers;
 
     public String getServer() {
-        return servers[new Random().nextInt(servers.length)];
+        String url = servers[new Random().nextInt(servers.length)];
+        System.out.println("REQUEST REDIRECTED: " + url);
+        return url;
     }
 
     @Override
