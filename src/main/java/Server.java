@@ -74,7 +74,7 @@ public class Server extends AllDirectives {
 
     }
 
-    public void watchServers() throws InterruptedException, KeeperException {
+    public void watchServers() {
         try {
             final List<String> servers = new ArrayList<>();
             final List<String> serverNames = zookeeper.getChildren(SERVERS_PATH, event -> {
@@ -87,6 +87,8 @@ public class Server extends AllDirectives {
                 servers.add(new String(url));
             }
             storageActor.tell(new ServersChangeMessage(servers.toArray(new String[0])), ActorRef.noSender());
-        } catch ()
+        } catch (KeeperException | InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }
