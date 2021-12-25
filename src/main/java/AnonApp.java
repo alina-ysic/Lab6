@@ -9,11 +9,13 @@ import akka.http.javadsl.model.HttpRequest;
 import akka.http.javadsl.model.HttpResponse;
 import akka.stream.ActorMaterializer;
 import akka.stream.javadsl.Flow;
+import org.apache.zookeeper.KeeperException;
 
+import java.io.IOException;
 import java.util.concurrent.CompletionStage;
 
 public class AnonApp {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException, InterruptedException, KeeperException {
         int port = Integer.parseInt(args[0]);
         ActorSystem system = ActorSystem.create("Lab6");
         ActorRef storageActor = system.actorOf(Props.create(ConfStorageActor.class));

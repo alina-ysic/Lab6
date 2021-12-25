@@ -59,15 +59,15 @@ public class Server extends AllDirectives {
                 parameter(URL_PARAM, url ->
                     parameter(COUNT_PARAM, countValue -> {
                         int count = Integer.parseInt(countValue);
-                        if (count == 0) return http.singleRequest(HttpRequest.create(url));
-                        return Patterns.ask(storageActor, new RandomRequest(), TIMEOUT)
+                        if (count == 0) return completeWithFuture(http.singleRequest(HttpRequest.create(url)));
+                        return completeWithFuture(Patterns.ask(storageActor, new RandomRequest(), TIMEOUT)
                                 .thenCompose(newUrl -> {
                                     String link = String.valueOf(Uri.create(url)
                                             .query(Query.create(
                                                     Pair.create(URL_PARAM, url),
                                                     Pair.create(COUNT_PARAM, Integer.toString(count - 1)))));
                                     return http.singleRequest(HttpRequest.create(link));
-                                });
+                                }));
 
                     })
                 )
