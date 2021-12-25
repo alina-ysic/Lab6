@@ -1,4 +1,5 @@
 import akka.NotUsed;
+import akka.actor.ActorRef;
 import akka.http.javadsl.Http;
 import akka.http.javadsl.model.HttpRequest;
 import akka.http.javadsl.model.HttpResponse;
@@ -11,7 +12,7 @@ public class Server extends AllDirectives {
     private final Materializer materializer;
     //private final Flow<HttpRequest, HttpResponse, NotUsed> routes;
 
-    public Server(Http http, Materializer materializer) {
+    public Server(Http http, Materializer materializer, ActorRef storageActor) {
         this.http = http;
         this.materializer = materializer;
         //this.routes = routes;
