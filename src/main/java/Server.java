@@ -13,7 +13,7 @@ public class Server extends AllDirectives {
     private ActorRef storageActor;
     //private final Flow<HttpRequest, HttpResponse, NotUsed> routes;
 
-    public Server(Http http, Materializer materializer, ActorRef storageActor) {
+    public Server(Http http, Materializer materializer, ActorRef storageActor, int port) {
         this.http = http;
         this.materializer = materializer;
         this.storageActor = storageActor;
