@@ -20,11 +20,8 @@ public class AnonApp {
         final Http http = Http.get(system);
         final ActorMaterializer materializer = ActorMaterializer.create(system);
 
-        Server server = new Server(http, materializer, storageActor, port);
+        Server server = new Server(system, http, materializer, storageActor, port);
         Flow<HttpRequest, HttpResponse, NotUsed> flow = server.getFlow();
-
-
-        final Flow<HttpRequest, HttpResponse, NotUsed> flow = null;
 
         final CompletionStage<ServerBinding> binding = http.bindAndHandle(
                 flow,

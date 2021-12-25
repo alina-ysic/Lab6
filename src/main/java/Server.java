@@ -11,16 +11,22 @@ public class Server extends AllDirectives {
     private final Http http;
     private final Materializer materializer;
     private ActorRef storageActor;
+    private Flow<HttpRequest, HttpResponse, NotUsed> flow;
     //private final Flow<HttpRequest, HttpResponse, NotUsed> routes;
 
-    public Server(Http http, Materializer materializer, ActorRef storageActor, int port) {
+    public Server(System system, Http http, Materializer materializer, ActorRef storageActor, int port) {
         this.http = http;
         this.materializer = materializer;
         this.storageActor = storageActor;
         //this.routes = routes;
+        flow = createRoute().flow(system, materializer);
     }
 
-    public Flow getFlow() {
-        
+    public Flow<HttpRequest, HttpResponse, NotUsed> getFlow() {
+        return flow;
+    }
+
+    public void createRoute() {
+
     }
 }
