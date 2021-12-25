@@ -41,7 +41,7 @@ public class Server extends AllDirectives {
                         int count = Integer.parseInt(countValue);
                         if (count == 0) http.singleRequest(HttpRequest.create(url));
                         else {
-                            Patterns.ask(storageActor, new RandomServer(), TIMEOUT)
+                            Patterns.ask(storageActor, new RandomRequest(), TIMEOUT)
                         }
         })
     }

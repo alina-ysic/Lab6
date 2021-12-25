@@ -1,2 +1,2 @@
-public class RandomServer {
+public class RandomRequest {
 }
