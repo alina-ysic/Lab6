@@ -9,12 +9,14 @@ import akka.http.javadsl.server.Route;
 import akka.stream.Materializer;
 import akka.stream.javadsl.Flow;
 
+import java.time.Duration;
+
 public class Server extends AllDirectives {
     private final Http http;
     private final Materializer materializer;
     private ActorRef storageActor;
     private Flow<HttpRequest, HttpResponse, NotUsed> flow;
-
+    private static final Duration TIMEOUT = Duration.ofMillis(5000);
     private static final String URL_PARAM = "url";
     private static final String COUNT_PARAM = "count";
     //private final Flow<HttpRequest, HttpResponse, NotUsed> routes;
@@ -38,7 +40,7 @@ public class Server extends AllDirectives {
                         int count = Integer.parseInt(countValue);
                         if (count == 0) http.singleRequest(HttpRequest.create(url);
                         else {
-                            
+                            Patterns.ask(storageActor, new RandomServer(), TIMEOUT)
                         }
         })
     }
