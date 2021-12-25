@@ -19,4 +19,8 @@ public class Server extends AllDirectives {
         this.storageActor = storageActor;
         //this.routes = routes;
     }
+
+    public Flow getFlow() {
+        
+    }
 }
