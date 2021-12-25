@@ -12,10 +12,7 @@ import akka.japi.Pair;
 import akka.pattern.Patterns;
 import akka.stream.Materializer;
 import akka.stream.javadsl.Flow;
-import org.apache.zookeeper.CreateMode;
-import org.apache.zookeeper.KeeperException;
-import org.apache.zookeeper.ZooDefs;
-import org.apache.zookeeper.ZooKeeper;
+import org.apache.zookeeper.*;
 
 import java.io.IOException;
 import java.time.Duration;
@@ -77,8 +74,18 @@ public class Server extends AllDirectives {
 
     }
 
-    public void watchServers() {
+    public void watchServers() throws InterruptedException, KeeperException {
         final List<String> servers = new ArrayList<>();
-
+        final List<String> serverNames = zookeeper.getChildren(SERVERS_PATH, event -> {
+            if (event.getType() == Watcher.Event.EventType.NodeChildrenChanged) {
+                try {
+                    watchServers();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } catch (KeeperException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 }
