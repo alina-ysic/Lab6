@@ -24,6 +24,8 @@ public class Server extends AllDirectives {
     private Flow<HttpRequest, HttpResponse, NotUsed> flow;
     private static final Duration TIMEOUT = Duration.ofMillis(5000);
     private static final int TIMEOUT_INT = 5000;
+    private static final String SERVERS_PATH = "/servers";
+    private static final String NODE_PATH = "/servers/node";
     private static final String URL_PARAM = "url";
     private static final String COUNT_PARAM = "count";
 
