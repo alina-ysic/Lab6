@@ -6,6 +6,7 @@ import akka.http.javadsl.model.HttpRequest;
 import akka.http.javadsl.model.HttpResponse;
 import akka.http.javadsl.server.AllDirectives;
 import akka.http.javadsl.server.Route;
+import akka.pattern.Patterns;
 import akka.stream.Materializer;
 import akka.stream.javadsl.Flow;
 
@@ -38,7 +39,7 @@ public class Server extends AllDirectives {
                 parameter(URL_PARAM, url ->
                     parameter(COUNT_PARAM, countValue -> {
                         int count = Integer.parseInt(countValue);
-                        if (count == 0) http.singleRequest(HttpRequest.create(url);
+                        if (count == 0) http.singleRequest(HttpRequest.create(url));
                         else {
                             Patterns.ask(storageActor, new RandomServer(), TIMEOUT)
                         }
