@@ -43,7 +43,7 @@ public class Server extends AllDirectives {
                         else {
                             Patterns.ask(storageActor, new RandomRequest(), TIMEOUT)
                                     .thenCompose(newUrl -> {
-                                        
+                                        String 
                                     })
                         }
         })
