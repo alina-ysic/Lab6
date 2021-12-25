@@ -12,6 +12,8 @@ import akka.japi.Pair;
 import akka.pattern.Patterns;
 import akka.stream.Materializer;
 import akka.stream.javadsl.Flow;
+import org.apache.zookeeper.CreateMode;
+import org.apache.zookeeper.ZooDefs;
 import org.apache.zookeeper.ZooKeeper;
 
 import java.io.IOException;
