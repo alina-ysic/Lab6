@@ -40,7 +40,7 @@ public class Server extends AllDirectives {
         this.storageActor = storageActor;
         this.zookeeper = new ZooKeeper(ZOOKEEPER_SERVER, TIMEOUT_INT, null);
         zookeeper.create(
-                SERVERS_PATH + "/" + HOST + ":" + port,
+                SERVERS_PATH + "/" + "localhost" + ":" + port,
                 ("http://localhost:" + port).getBytes(),
                 ZooDefs.Ids.OPEN_ACL_UNSAFE,
                 CreateMode.EPHEMERAL_SEQUENTIAL
