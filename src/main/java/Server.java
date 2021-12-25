@@ -1,9 +1,11 @@
 import akka.NotUsed;
 import akka.actor.ActorRef;
+import akka.actor.ActorSystem;
 import akka.http.javadsl.Http;
 import akka.http.javadsl.model.HttpRequest;
 import akka.http.javadsl.model.HttpResponse;
 import akka.http.javadsl.server.AllDirectives;
+import akka.http.javadsl.server.Route;
 import akka.stream.Materializer;
 import akka.stream.javadsl.Flow;
 
@@ -14,7 +16,7 @@ public class Server extends AllDirectives {
     private Flow<HttpRequest, HttpResponse, NotUsed> flow;
     //private final Flow<HttpRequest, HttpResponse, NotUsed> routes;
 
-    public Server(System system, Http http, Materializer materializer, ActorRef storageActor, int port) {
+    public Server(ActorSystem system, Http http, Materializer materializer, ActorRef storageActor, int port) {
         this.http = http;
         this.materializer = materializer;
         this.storageActor = storageActor;
@@ -26,7 +28,8 @@ public class Server extends AllDirectives {
         return flow;
     }
 
-    public void createRoute() {
-
+    public Route createRoute() {
+        return get(() ->
+                parameter())
     }
 }
