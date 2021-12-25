@@ -14,6 +14,7 @@ import akka.stream.Materializer;
 import akka.stream.javadsl.Flow;
 import org.apache.zookeeper.ZooKeeper;
 
+import java.io.IOException;
 import java.time.Duration;
 
 public class Server extends AllDirectives {
@@ -22,17 +23,18 @@ public class Server extends AllDirectives {
     private ActorRef storageActor;
     private Flow<HttpRequest, HttpResponse, NotUsed> flow;
     private static final Duration TIMEOUT = Duration.ofMillis(5000);
+    private static final int TIMEOUT_INT = 5000;
     private static final String URL_PARAM = "url";
     private static final String COUNT_PARAM = "count";
 
     private static final String ZOOKEEPER_SERVER = "127.0.0.1:2181";
-    private static final ZooKeeper;
+    private final ZooKeeper zooKeeper;
 
-    public Server(ActorSystem system, Http http, Materializer materializer, ActorRef storageActor, int port) {
+    public Server(ActorSystem system, Http http, Materializer materializer, ActorRef storageActor, int port) throws IOException {
         this.http = http;
         this.materializer = materializer;
         this.storageActor = storageActor;
-
+        this.zooKeeper = new ZooKeeper(ZOOKEEPER_SERVER, TIMEOUT_INT, null);
         flow = createRoute().flow(system, materializer);
     }
 
