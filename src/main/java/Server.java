@@ -28,7 +28,7 @@ public class Server extends AllDirectives {
         this.http = http;
         this.materializer = materializer;
         this.storageActor = storageActor;
-        
+
         flow = createRoute().flow(system, materializer);
     }
 
