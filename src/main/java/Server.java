@@ -57,7 +57,6 @@ public class Server extends AllDirectives {
         return get(() ->
                 parameter(URL_PARAM, url ->
                     parameter(COUNT_PARAM, countValue -> {
-                        System.out.println("request");
                         int count = Integer.parseInt(countValue);
                         if (count == 0) return completeWithFuture(http.singleRequest(HttpRequest.create(url)));
                         return completeWithFuture(Patterns.ask(storageActor, new RandomRequest(), TIMEOUT)
