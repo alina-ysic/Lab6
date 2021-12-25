@@ -11,5 +11,19 @@ public class AnonApp {
         ActorRef storageActor = system.actorOf(Props.create(ConfStorageActor.class));
         final Http http = Http.get(system);
         final ActorMaterializer materializer = ActorMaterializer.create(system);
+
+
+        final CompletionStage<ServerBinding> binding = http.bindAndHandle(
+                flow,
+                ConnectHttp.toHost(HOST, port),
+                materializer
+        );
+
+        System.out.println("Server started: " + HOST + ":" + port);
+        System.in.read();
+        binding
+                .thenCompose(ServerBinding::unbind)
+                .thenAccept(unbind -> system.terminate());
+    }
     }
 }
